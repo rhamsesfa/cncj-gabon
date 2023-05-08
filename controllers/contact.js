@@ -5,31 +5,25 @@ exports.createContact = (req, res, next) => {
     delete contactObject._id;
     const contact = new Contact({
         ...contactObject,
-        userId: req.auth.userId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        DatePostContact: Date.now()
     });
   
     contact.save()
-    .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
+    .then(() => { res.status(201).json({message: 'Le contact a été ajouté avec succès !'})})
     .catch(error => { res.status(400).json( { error })})
 };
 
 exports.modifyContact = (req, res, next) => {
-    const contactObject = req.file ? {
+    const contactObject = {
         ...JSON.parse(req.body.contact),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
+        DatePostContact: Date.now()
+    };
   
-    delete contactObject._userId;
     Contact.findOne({_id: req.params.id})
         .then((contact) => {
-            if (contact.userId != req.auth.userId) {
-                res.status(401).json({ message : 'Not authorized'});
-            } else {
                 Contact.updateOne({ _id: req.params.id}, { ...contactObject, _id: req.params.id})
-                .then(() => res.status(200).json({message : 'Objet modifié!'}))
+                .then(() => res.status(200).json({message : 'Le contact a été modifié avec succès !'}))
                 .catch(error => res.status(401).json({ error }));
-            }
         })
         .catch((error) => {
             res.status(400).json({ error });
@@ -39,16 +33,9 @@ exports.modifyContact = (req, res, next) => {
  exports.deleteContact = (req, res, next) => {
     Contact.findOne({ _id: req.params.id})
         .then(contact => {
-            if (contact.userId != req.auth.userId) {
-                res.status(401).json({message: 'Not authorized'});
-            } else {
-                const filename = contact.imageUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
-                    Contact.deleteOne({_id: req.params.id})
-                        .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                        .catch(error => res.status(401).json({ error }));
-                });
-            }
+            Contact.deleteOne({_id: req.params.id})
+                .then(() => { res.status(200).json({message: 'Le contact a été supprimé avec succès !'})})
+                .catch(error => res.status(401).json({ error }));
         })
         .catch( error => {
             res.status(500).json({ error });

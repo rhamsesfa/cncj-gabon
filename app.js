@@ -5,6 +5,7 @@ const path = require('path');
 //on importe les routers
 const stuffRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user')
+const contactRoutes = require('./routes/contact')
 
 mongoose.connect('mongodb+srv://rhamsesfa:BhHlFFTPs8Ya292u@cluster0.5wowfjx.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -24,6 +25,8 @@ app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/stuff', stuffRoutes)
+
+app.use('/api/contact', contactRoutes)
 
 app.use('/api/auth', userRoutes)
 
