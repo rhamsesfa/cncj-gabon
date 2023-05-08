@@ -1,7 +1,7 @@
 const Contact = require('../models/Contact')
 
 exports.createContact = (req, res, next) => {
-    const contactObject = JSON.parse(req.body.contact);
+    const contactObject = JSON.parse(req.body);
     delete contactObject._id;
     const contact = new Contact({
         ...contactObject,
