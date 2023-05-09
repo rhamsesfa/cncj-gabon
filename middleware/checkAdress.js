@@ -19,7 +19,6 @@ module.exports = (req, res, next) => {
   }
   if(expressionReguliereEmail.test(entree)){
     req.body.typeContact = 'Mail'
-    
   }
 
   // Si l'entrée est valide, on passe à la fonction suivante dans la chaîne de middleware

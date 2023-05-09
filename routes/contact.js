@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth')
 const contactCtrl = require('../controllers/contact')
+const contactCtrl = require('../controllers/contact')
 const multer  = require('../middleware/multer-config');
 
 //implémentation du CRUD complet//
