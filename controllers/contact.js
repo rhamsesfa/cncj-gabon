@@ -9,7 +9,7 @@ exports.createContact = (req, res, next) => {
     });
   
     contact.save()
-    .then(() => { res.status(201).json({message: 'Le contact a été ajouté avec succès !'})})
+    .then(() => { res.status(201).json({message: 'Message added'})})
     .catch(error => { res.status(400).json( { error })})
 };
 
