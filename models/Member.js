@@ -9,13 +9,13 @@ const contactSchema = mongoose.Schema({
   nom: { type: String, required: true },
   num_arrete: { type: String, required: true },
   phone: { type: String, required: true },
-  photo: { type: String, required: true },
+  photo: { type: String, required: false },
   prenom: { type: String, required: true },
   province: { type: String, required: true },
   quartier: { type: String, required: true },
   raison: { type: String, required: true },
-  pdfArrete: { type: String, required: true },
-  pdfDemande: { type: String, required: true },
+  pdfArrete: { type: String, required: false },
+  pdfDemande: { type: String, required: false },
   DatePostMember:{ type: String, required: true },
   stateMember : { type: Boolean, required: true }
 });

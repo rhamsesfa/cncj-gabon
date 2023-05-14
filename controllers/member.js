@@ -2,7 +2,7 @@ const Member = require('../models/Member')
 
 exports.createMember = (req, res, next) => {
   console.log(req.body, )
-    /*const memberObject = req.body;
+    const memberObject = req.body;
     delete memberObject._id;
     const member = new Member({
         ...memberObject,
@@ -12,7 +12,7 @@ exports.createMember = (req, res, next) => {
   
     member.save()
     .then(() => { res.status(201).json({message: 'Member added'})})
-    .catch(error => { res.status(400).json( { error })})*/
+    .catch(error => { res.status(400).json( { error })})
 };
 
 exports.modifyMember = (req, res, next) => {
