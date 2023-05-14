@@ -1,14 +1,7 @@
 const Member = require("../models/Member");
-const MIME_TYPES = {
-    'image/jpg': 'jpg',
-    'image/jpeg': 'jpg',
-    'image/png': 'png',
-    'application/pdf': 'pdf'
-};
-
 exports.createMember = (req, res, next) => {
   const fileN = req.files;
-  const nameArrete = fileN.originalname
+  const nameArrete = fileN.pdfArrete[0]
   console.log(fileN)
   //arrêté ministériel
   if(/\s/.test(nameArrete)){
