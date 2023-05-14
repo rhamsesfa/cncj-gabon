@@ -21,7 +21,7 @@ exports.createMember = (req, res, next) => {
     ...memberObject,
     DatePostMember: Date.now(),
     stateMember: false,
-    pdfArrete: nameArrete + Date.now() + '.' + extensionArrete,
+    pdfArrete: nameArrete,
   });
 
   member
