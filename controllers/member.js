@@ -1,7 +1,7 @@
 const Member = require('../models/Member')
 
 exports.createMember = (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body, )
     /*const memberObject = req.body;
     delete memberObject._id;
     const member = new Member({
