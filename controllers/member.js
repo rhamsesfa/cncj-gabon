@@ -1,13 +1,12 @@
 const Member = require("../models/Member");
 exports.createMember = (req, res, next) => {
-  const fileN = req.files;
-  const nameArrete = fileN.pdfArrete[0]
-  console.log(fileN)
   //arrêté ministériel
-  if(/\s/.test(nameArrete)){
-    nameArrete = fileN.originalname.split(' ').join('_');
-  }
-  const extensionArrete = MIME_TYPES[fileN.mimetype];
+  const nameArrete = req.files.pdfArrete[0].path;
+  //arrêté ministériel
+  const nameDemande = req.files.pdfDemande[0].path;
+  //arrêté ministériel
+  const namePhoto = req.files.photo[0].path;
+  console.log(req.files)
   const memberObject = req.body;
   delete memberObject._id;
   const member = new Member({
