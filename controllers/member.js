@@ -11,7 +11,7 @@ exports.createMember = (req, res, next) => {
   const nameArrete = fileN.originalname
   console.log(fileN)
   //arrêté ministériel
-  if(/\s/.test(nameArrete)){
+  /*if(/\s/.test(nameArrete)){
     nameArrete = fileN.originalname.split(' ').join('_');
   }
   const extensionArrete = MIME_TYPES[fileN.mimetype];
@@ -31,7 +31,7 @@ exports.createMember = (req, res, next) => {
     })
     .catch((error) => {
       res.status(400).json({ error });
-    });/**/
+    });*/
 };
 
 exports.modifyMember = (req, res, next) => {
