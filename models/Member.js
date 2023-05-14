@@ -16,6 +16,8 @@ const contactSchema = mongoose.Schema({
   raison: { type: String, required: true },
   pdfArrete: { type: String, required: true },
   pdfDemande: { type: String, required: true },
+  DatePostMember:{ type: String, required: true },
+  stateMember : { type: Boolean, required: true }
 });
 
 module.exports = mongoose.model('Member', contactSchema);
