@@ -14,6 +14,8 @@ exports.createMember = (req, res, next) => {
     DatePostMember: Date.now(),
     stateMember: false,
     pdfArrete: nameArrete,
+    pdfDemande: nameDemande,
+    photo: namePhoto,
   });
 
   member
