@@ -7,7 +7,7 @@ const MIME_TYPES = {
 };
 
 exports.createMember = (req, res, next) => {
-  const fileN = req.files.pdfArrete;
+  const fileN = req.files;
   const nameArrete = fileN.originalname
   console.log(fileN)
   //arrêté ministériel
