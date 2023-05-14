@@ -8,13 +8,11 @@ const MIME_TYPES = {
 
 exports.createMember = (req, res, next) => {
   const fileN = req.files.pdfArrete;
+  const nameArrete = fileN.originalname
   console.log(fileN)
   //arrêté ministériel
-  if(/\s/.test(" ")){
-    const nameArrete = fileN.originalname.split(' ').join('_');
-  }
-  else{
-    const nameArrete = fileN.originalname
+  if(/\s/.test(nameArrete)){
+    nameArrete = fileN.originalname.split(' ').join('_');
   }
   const extensionArrete = MIME_TYPES[fileN.mimetype];
   const memberObject = req.body;
@@ -23,7 +21,7 @@ exports.createMember = (req, res, next) => {
     ...memberObject,
     DatePostMember: Date.now(),
     stateMember: false,
-    pdfArrete: name + Date.now() + '.' + extensionArrete,
+    pdfArrete: nameArrete + Date.now() + '.' + extensionArrete,
   });
 
   member
