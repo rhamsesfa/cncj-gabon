@@ -1,6 +1,16 @@
 const Member = require("../models/Member");
+const MIME_TYPES = {
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'application/pdf': 'pdf'
+};
 
 exports.createMember = (req, res, next) => {
+  const fileN = req.file;
+  //arrêté ministériel
+  const nameArrete = fileN.pdfArrete.originalname.split(' ').join('_');
+  const extensionArrete = MIME_TYPES[fileN.pdfArrete.mimetype];
   console.log(req);
   const memberObject = req.body;
   delete memberObject._id;
@@ -8,6 +18,7 @@ exports.createMember = (req, res, next) => {
     ...memberObject,
     DatePostMember: Date.now(),
     stateMember: false,
+    pdfArrete: name + Date.now() + '.' + extensionArrete,
   });
 
   member
