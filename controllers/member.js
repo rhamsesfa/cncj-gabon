@@ -10,7 +10,7 @@ exports.createMember = (req, res, next) => {
     });
   
     member.save()
-    .then(() => { res.status(201).json({message: 'Message added'})})
+    .then(() => { res.status(201).json({message: 'Member added'})})
     .catch(error => { res.status(400).json( { error })})
 };
 
