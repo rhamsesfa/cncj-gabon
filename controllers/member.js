@@ -6,7 +6,7 @@ exports.createMember = (req, res, next) => {
   const nameDemande = req.files.pdfDemande[0].path;
   //arrêté ministériel
   const namePhoto = req.files.photo[0].path;
-  console.log(req.files)
+  //console.log(req.files)
   const memberObject = req.body;
   delete memberObject._id;
   const member = new Member({
