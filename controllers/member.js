@@ -21,7 +21,7 @@ exports.createMember = (req, res, next) => {
   member
     .save()
     .then(() => {
-      res.status(201).json({ message: "Member added" });
+      res.status(201).json({ msg: "Member added" });
     })
     .catch((error) => {
       res.status(400).json({ error });
@@ -43,7 +43,7 @@ exports.modifyMember = (req, res, next) => {
         .then(() =>
           res
             .status(200)
-            .json({ message: "Le member a été modifié avec succès !" })
+            .json({ msg: "Le member a été modifié avec succès !" })
         )
         .catch((error) => res.status(401).json({ error }));
     })
@@ -59,7 +59,7 @@ exports.deleteMember = (req, res, next) => {
         .then(() => {
           res
             .status(200)
-            .json({ message: "Le member a été supprimé avec succès !" });
+            .json({ msg: "Le member a été supprimé avec succès !" });
         })
         .catch((error) => res.status(401).json({ error }));
     })
