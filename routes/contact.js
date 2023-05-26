@@ -16,6 +16,9 @@ router.get('/', auth, contactCtrl.getAllContacts);
 //update (modification de ressources)
 router.put('/:id', auth, contactCtrl.modifyContact);
 
+//route permettant de modifer la visibilité (lus ou non lus) des contacts
+router.put('/', contactCtrl.modifyContactByReading)
+
 //delete (suppression de ressources)
 router.delete('/:id', auth, contactCtrl.deleteContact);
 
