@@ -16,7 +16,7 @@ exports.createContact = (req, res, next) => {
 
 exports.modifyContact = (req, res, next) => {
     const contactObject = {
-        ...JSON.parse(req.body.contact),
+        ...JSON.parse(req.body),
         datePostContact: Date.now()
     };
   
@@ -33,12 +33,12 @@ exports.modifyContact = (req, res, next) => {
 
 exports.modifyContactByReading = (req, res, next) => {
     const contactObject = {
-        ...JSON.parse(req.body.contact),
-        datePostContact: Date.now()
+        readContact: true,
+        dateReading: Date.now()
     };
   
-    Contact.findOne({_id: req.params.id})
-        .then((contact) => {
+    Contact.find({readContact: false})
+        .then((contacts) => {
                 Contact.updateOne({ _id: req.params.id}, { ...contactObject, _id: req.params.id})
                 .then(() => res.status(200).json({message : 'Le contact a été modifié avec succès !'}))
                 .catch(error => res.status(401).json({ error }));
