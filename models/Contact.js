@@ -5,7 +5,8 @@ const contactSchema = mongoose.Schema({
   adresseContact: { type: String, required: true },
   typeContact: { type: String, required: true },
   messageContact: { type: String, required: true },
-  DatePostContact: { type: String, required: true },
+  datePostContact: { type: String, required: true },
+  readContact: { type: Boolean, required: false },
 });
 
 module.exports = mongoose.model('Contact', contactSchema);

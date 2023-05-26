@@ -5,7 +5,8 @@ exports.createContact = (req, res, next) => {
     delete contactObject._id;
     const contact = new Contact({
         ...contactObject,
-        DatePostContact: Date.now()
+        datePostContact: Date.now(),
+        readContact:false
     });
   
     contact.save()
@@ -16,7 +17,24 @@ exports.createContact = (req, res, next) => {
 exports.modifyContact = (req, res, next) => {
     const contactObject = {
         ...JSON.parse(req.body.contact),
-        DatePostContact: Date.now()
+        datePostContact: Date.now()
+    };
+  
+    Contact.findOne({_id: req.params.id})
+        .then((contact) => {
+                Contact.updateOne({ _id: req.params.id}, { ...contactObject, _id: req.params.id})
+                .then(() => res.status(200).json({message : 'Le contact a été modifié avec succès !'}))
+                .catch(error => res.status(401).json({ error }));
+        })
+        .catch((error) => {
+            res.status(400).json({ error });
+        });
+ };
+
+exports.modifyContactByReading = (req, res, next) => {
+    const contactObject = {
+        ...JSON.parse(req.body.contact),
+        datePostContact: Date.now()
     };
   
     Contact.findOne({_id: req.params.id})
