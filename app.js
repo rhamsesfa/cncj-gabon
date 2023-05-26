@@ -29,11 +29,8 @@ app.use('/api/stuff', stuffRoutes)
 
 app.use('/api/contact', contactRoutes)
 
-
 app.use('/api/addMember', memberRoutes)
 
 app.use('/api/auth', userRoutes)
-
-
 
 module.exports = app;
