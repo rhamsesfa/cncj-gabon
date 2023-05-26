@@ -37,16 +37,19 @@ exports.modifyContactByReading = (req, res, next) => {
         dateReading: Date.now()
     };
   
-    Contact.find({readContact: false})
+    Contact.find({ readContact: false })
         .then((contacts) => {
-                Contact.updateOne({ _id: req.params.id}, { ...contactObject, _id: req.params.id})
-                .then(() => res.status(200).json({message : 'Le contact a été modifié avec succès !'}))
-                .catch(error => res.status(401).json({ error }));
+            const promises = contacts.map((contact) => {
+                return Contact.updateOne({ _id: contact._id }, { ...contactObject });
+            });
+            return Promise.all(promises);
         })
+        .then(() => res.status(200).json({ message: 'Le contact a été modifié avec succès !' }))
         .catch((error) => {
             res.status(400).json({ error });
         });
- };
+};
+
 
  exports.deleteContact = (req, res, next) => {
     Contact.findOne({ _id: req.params.id})
