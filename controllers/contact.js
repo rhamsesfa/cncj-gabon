@@ -9,9 +9,12 @@ exports.createContact = (req, res, next) => {
     const jour = date.getDate();
     const mois = date.getMonth() + 1; // Les mois sont indexés à partir de 0, donc on ajoute 1
     const annee = date.getFullYear();
+    const heures = date.getHours();
+    const minutes = date.getMinutes();
+    const secondes = date.getSeconds();
 
-    // Formater la date au format français (jour/mois/année)
-    const dateFormatee = `${jour < 10 ? '0' + jour : jour}/${mois < 10 ? '0' + mois : mois}/${annee}`;
+    // Formater la date au format français (jour/mois/année heures:minutes:secondes)
+    const dateFormatee = `${jour < 10 ? '0' + jour : jour}/${mois < 10 ? '0' + mois : mois}/${annee} à ${heures}:${minutes}:${secondes}`;
   
     const contact = new Contact({
         ...contactObject,
