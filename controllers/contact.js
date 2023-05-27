@@ -3,9 +3,10 @@ const Contact = require('../models/Contact')
 exports.createContact = (req, res, next) => {
     const contactObject = req.body;
     delete contactObject._id;
+    const date = new Date()
     const contact = new Contact({
         ...contactObject,
-        datePostContact: Date.now(),
+        datePostContact: date.toLocaleString(),
         readContact:false
     });
   
