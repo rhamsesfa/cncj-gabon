@@ -3,10 +3,19 @@ const Contact = require('../models/Contact')
 exports.createContact = (req, res, next) => {
     const contactObject = req.body;
     delete contactObject._id;
-    const date = new Date()
+    const date = new Date(); // Crée un objet Date avec la date et l'heure actuelles
+
+    // Obtenir les composants de la date
+    const jour = date.getDate();
+    const mois = date.getMonth() + 1; // Les mois sont indexés à partir de 0, donc on ajoute 1
+    const annee = date.getFullYear();
+
+    // Formater la date au format français (jour/mois/année)
+    const dateFormatee = `${jour < 10 ? '0' + jour : jour}/${mois < 10 ? '0' + mois : mois}/${annee}`;
+  
     const contact = new Contact({
         ...contactObject,
-        datePostContact: date.toLocaleString(),
+        datePostContact: dateFormatee,
         readContact:false
     });
   
